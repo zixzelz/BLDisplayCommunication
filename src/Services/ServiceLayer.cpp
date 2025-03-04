@@ -1,0 +1,34 @@
+#include "ServiceLayer.h"
+
+ServiceLayer::ServiceLayer(TransferService* transferService)
+    : transferService(transferService) {
+  printf("transferService address: %p\n", transferService);
+}
+
+void ServiceLayer::sendLightStatus(StatusType status) {
+  sendStatus(CommandEventID::lightStatus, status);
+}
+
+void ServiceLayer::sendFanStatus(StatusType status) {
+  sendStatus(CommandEventID::fanStatus, status);
+}
+
+void ServiceLayer::sendStatus(CommandEventID cmdID, StatusType status) {
+  printf("transferService address: %p\n", transferService);
+
+  StatusEvent statusEvent(status);
+  JsonDocument statusEventJsonDoc = statusEvent.toJsonDocument();
+  JsonObject statusEventJsonObj = statusEventJsonDoc.as<JsonObject>();
+
+  CommandEvent event(cmdID, statusEventJsonObj);
+  String jsonString = event.toJsonString();
+  printf("Serialized JSON: %s\n", jsonString.c_str());
+
+  if (!transferService) {
+    printf("Error: transferLayer is nullptr!\n");
+    return;
+  }
+
+  transferService->send(jsonString);
+}
+// SDL_Log("This should now be visible!");

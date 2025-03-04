@@ -1,0 +1,24 @@
+{
+	"name": "BLDisplayCommunication",
+	"version": "0.0.1",
+	"keywords": "display",
+	"description": "BambuLightsDisplayCommunication",
+	"homepage": "https://github.com/zixzelz/BLDisplayCommunication",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/zixzelz/BLDisplayCommunication"
+	},
+	"authors": {
+		"name": "Ruslan Maslouski",
+		"url": "https://github.com/zixzelz"
+	},
+	"frameworks": "*",
+	"platforms": "*",
+	"dependencies": [
+		{
+			"owner": "bblanchon",
+			"name": "ArduinoJson",
+			"version": "^7.0.3"
+		}
+	]
+}
