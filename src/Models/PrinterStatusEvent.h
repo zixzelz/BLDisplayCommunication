@@ -10,6 +10,14 @@ struct PrinterStatusEvent : public JsonSerializable {
   PrinterStatusEvent(JsonObject& json);
   PrinterStatusEvent(PrinterState state, int ambientTemp);
 
+  bool operator==(const PrinterStatusEvent& other) const {
+    return state == other.state && ambientTemp == other.ambientTemp;
+  }
+
+  bool operator!=(const PrinterStatusEvent& other) const {
+    return !(*this == other);
+  }
+
  protected:
   void toJson(JsonObject& json) const override;
   void fromJson(JsonObject& json) override;

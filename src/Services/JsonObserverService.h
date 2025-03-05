@@ -12,9 +12,9 @@ class JSONObserverService final : public ObserverService, public TransferService
  public:
   JSONObserverService(TransferService* transferLayer);
 
-  void subscribeToFanStatus(StatusEventCallback callback);
-  void subscribeToLightStatus(StatusEventCallback callback);
-  void subscribeToPrinterStatusEvent(PrinterStatusEventCallback callback);
+  void subscribeToFanStatus(StatusEventCallback callback) override;
+  void subscribeToLightStatus(StatusEventCallback callback) override;
+  void subscribeToPrinterStatusEvent(PrinterStatusEventCallback callback) override;
 
  private:
   StatusEventCallback fanStatusCallback_;
