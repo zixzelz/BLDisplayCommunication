@@ -13,7 +13,7 @@ void JSONObserverService::subscribeToFanStatus(StatusEventCallback callback) {
   fanStatusCallback_ = callback;
 }
 
-void JSONObserverService::subscribeToPrinterStatusEvent(PrinterStatusEventCallback callback) {
+void JSONObserverService::subscribeToPrinterStatusEvent(PrinterStateEventCallback callback) {
   printerStatusCallback_ = callback;
 }
 
@@ -39,11 +39,11 @@ void JSONObserverService::didReceive(const String data) {
       StatusEvent statusEvent(jsonObject);
       lightStatusCallback_(statusEvent);
     }
-  } else if (event.id == CommandEventID::printerStatus) {
+  } else if (event.id == CommandEventID::printerState) {
     printf("JSONObserverService::didReceive: printerStatus \n");
     if (printerStatusCallback_ != nullptr) {
       JsonObject jsonObject = event.eventJsonDocument.as<JsonObject>();
-      PrinterStatusEvent statusEvent(jsonObject);
+      PrinterStateEvent statusEvent(jsonObject);
       printerStatusCallback_(statusEvent);
     }
   } else if (event.id == CommandEventID::temperatureStatus) {

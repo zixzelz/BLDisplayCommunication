@@ -4,6 +4,7 @@
 #include "../Codable/JsonSerializer.h"
 #include "../Models/CommandEvent.h"
 #include "../Models/StatusEvent.h"
+#include "../Models/PrinterStateEvent.h"
 #include "../Models/ValueEvent.h"
 
 class ServiceLayer {
@@ -12,6 +13,7 @@ class ServiceLayer {
 
   void sendLightStatus(StatusType status);
   void sendFanStatus(StatusType status);
+  void sendPrinterState(PrinterState printerState);
 
   void sendTemperatureValue(float value);
 
@@ -20,4 +22,5 @@ class ServiceLayer {
 
   void sendValueEvent(ValueEvent value);
   void sendStatus(CommandEventID cmdID, StatusType status);
+  void sendEventString(String jsonString);
 };  // class ServiceLayer

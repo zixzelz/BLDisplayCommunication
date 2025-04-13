@@ -5,7 +5,7 @@
 enum class CommandEventID : int {
   lightStatus = 0,
   fanStatus = 1,
-  printerStatus = 2,
+  printerState = 2,
   temperatureStatus = 3,
   Invalid = 255
 };

@@ -3,18 +3,18 @@
 #include "../Codable/JsonSerializer.h"
 #include "PrinterState.h"
 
-struct PrinterStatusEvent : public JsonSerializable {
+struct PrinterStateEvent : public JsonSerializable {
   PrinterState state;
   int ambientTemp;
 
-  PrinterStatusEvent(JsonObject& json);
-  PrinterStatusEvent(PrinterState state, int ambientTemp);
+  PrinterStateEvent(JsonObject& json);
+  PrinterStateEvent(PrinterState state, int ambientTemp);
 
-  bool operator==(const PrinterStatusEvent& other) const {
+  bool operator==(const PrinterStateEvent& other) const {
     return state == other.state && ambientTemp == other.ambientTemp;
   }
 
-  bool operator!=(const PrinterStatusEvent& other) const {
+  bool operator!=(const PrinterStateEvent& other) const {
     return !(*this == other);
   }
 

@@ -1,19 +1,19 @@
-#include "PrinterStatusEvent.h"
+#include "PrinterStateEvent.h"
 
-PrinterStatusEvent::PrinterStatusEvent(JsonObject& json) {
+PrinterStateEvent::PrinterStateEvent(JsonObject& json) {
   fromJson(json);
 }
 
-PrinterStatusEvent::PrinterStatusEvent(PrinterState state, int ambientTemp)
+PrinterStateEvent::PrinterStateEvent(PrinterState state, int ambientTemp)
     : state(state), ambientTemp(ambientTemp) {
 }
 
-void PrinterStatusEvent::toJson(JsonObject& json) const {
+void PrinterStateEvent::toJson(JsonObject& json) const {
   json["state"] = static_cast<int>(state);
   json["ambientTemp"] = ambientTemp;
 }
 
-void PrinterStatusEvent::fromJson(JsonObject& json) {
+void PrinterStateEvent::fromJson(JsonObject& json) {
   if (json["status"].is<int>()) {
     state = static_cast<PrinterState>(json["state"].as<int>());
   }
