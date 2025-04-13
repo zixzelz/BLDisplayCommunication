@@ -17,15 +17,22 @@ void SerialTransferService::setup(uint8_t rxPin, uint8_t txPin) {
 
 void SerialTransferService::loop() {
   if (Serial.available() > 0) {
-    printf("0 \n");
+    printf("[SerialTransferService] receive string \n");
     String incomingByte = Serial.readStringUntil('\n');
-    printf("1 \n");
-    delegate->didReceive(incomingByte);
+
+    // Check if the message starts with ">>"
+    if (incomingByte.startsWith(">>")) {
+      printf("[SerialTransferService] process string \n");
+      // Remove the ">>" prefix
+      incomingByte = incomingByte.substring(2);
+      delegate->didReceive(incomingByte);
+    }
   }
 }
 
 void SerialTransferService::send(const String data) {
-  Serial.println(data);
+  String modifiedData = ">>" + data;
+  Serial.println(modifiedData);
 }
 
 #endif

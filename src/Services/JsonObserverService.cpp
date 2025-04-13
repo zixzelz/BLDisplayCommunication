@@ -48,7 +48,7 @@ void JSONObserverService::didReceive(const String data) {
     }
   } else if (event.id == CommandEventID::temperatureStatus) {
     printf("JSONObserverService::didReceive: temperatureStatus \n");
-    if (printerStatusCallback_ != nullptr) {
+    if (temperatureCallback_ != nullptr) {
       JsonObject jsonObject = event.eventJsonDocument.as<JsonObject>();
       ValueEvent valueEvent(jsonObject);
       temperatureCallback_(valueEvent);
