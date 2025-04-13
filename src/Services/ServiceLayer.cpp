@@ -13,6 +13,27 @@ void ServiceLayer::sendFanStatus(StatusType status) {
   sendStatus(CommandEventID::fanStatus, status);
 }
 
+void ServiceLayer::sendTemperatureValue(float value) {
+  ValueEvent valueEvent(value);
+  sendValueEvent(valueEvent);
+}
+
+void ServiceLayer::sendValueEvent(ValueEvent value) {
+  JsonDocument valueEventJsonDoc = value.toJsonDocument();
+  JsonObject statusEventJsonObj = valueEventJsonDoc.as<JsonObject>();
+
+  CommandEvent event(CommandEventID::temperatureStatus, statusEventJsonObj);
+  String jsonString = event.toJsonString();
+  printf("Serialized JSON: %s\n", jsonString.c_str());
+
+  if (!transferService) {
+    printf("Error: transferLayer is nullptr!\n");
+    return;
+  }
+
+  transferService->send(jsonString);
+}
+
 void ServiceLayer::sendStatus(CommandEventID cmdID, StatusType status) {
   printf("transferService address: %p\n", transferService);
 

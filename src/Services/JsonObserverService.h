@@ -15,10 +15,12 @@ class JSONObserverService final : public ObserverService, public TransferService
   void subscribeToFanStatus(StatusEventCallback callback) override;
   void subscribeToLightStatus(StatusEventCallback callback) override;
   void subscribeToPrinterStatusEvent(PrinterStatusEventCallback callback) override;
+  void subscribeToTemperatureEvent(ValueEventCallback callback) override;
 
  private:
   StatusEventCallback fanStatusCallback_;
   StatusEventCallback lightStatusCallback_;
   PrinterStatusEventCallback printerStatusCallback_;
+  ValueEventCallback temperatureCallback_;
   void didReceive(const String data) override;
 };  // class JSONObserverService
