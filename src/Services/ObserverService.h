@@ -9,7 +9,7 @@ class ObserverService {
  public:
   using StatusEventCallback = std::function<void(StatusEvent statusEvent)>;
   using PrinterStateEventCallback = std::function<void(PrinterStateEvent statusEvent)>;
-  using ValueEventCallback = std::function<void(ValueEvent statusEvent)>;
+  using ValueEventCallback = std::function<void(ValueEvent vakueEvent)>;
 
  public:
   virtual void subscribeToLightStatus(StatusEventCallback callback) = 0;
