@@ -5,13 +5,12 @@
 
 struct PrinterStateEvent : public JsonSerializable {
   PrinterState state;
-  int ambientTemp;
 
   PrinterStateEvent(JsonObject& json);
-  PrinterStateEvent(PrinterState state, int ambientTemp);
+  PrinterStateEvent(PrinterState state);
 
   bool operator==(const PrinterStateEvent& other) const {
-    return state == other.state && ambientTemp == other.ambientTemp;
+    return state == other.state;
   }
 
   bool operator!=(const PrinterStateEvent& other) const {

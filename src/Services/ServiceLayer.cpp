@@ -14,7 +14,7 @@ void ServiceLayer::sendFanStatus(StatusType status) {
 }
 
 void ServiceLayer::sendPrinterState(PrinterState printerState) {
-  PrinterStateEvent event(printerState, 0);
+  PrinterStateEvent event(printerState);
   JsonDocument valueEventJsonDoc = event.toJsonDocument();
   JsonObject eventJsonObj = valueEventJsonDoc.as<JsonObject>();
 
