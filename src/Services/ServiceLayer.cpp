@@ -29,6 +29,17 @@ void ServiceLayer::sendTemperatureValue(float value) {
   sendValueEvent(valueEvent);
 }
 
+void ServiceLayer::sendRequestRefresh() {
+  EmptyEvent event;
+  JsonDocument valueEventJsonDoc = event.toJsonDocument();
+  JsonObject eventJsonObj = valueEventJsonDoc.as<JsonObject>();
+
+  CommandEvent commandEvent(CommandEventID::refresh, eventJsonObj);
+  String jsonString = commandEvent.toJsonString();
+
+  sendEventString(jsonString);
+}
+
 void ServiceLayer::sendValueEvent(ValueEvent value) {
   JsonDocument valueEventJsonDoc = value.toJsonDocument();
   JsonObject statusEventJsonObj = valueEventJsonDoc.as<JsonObject>();

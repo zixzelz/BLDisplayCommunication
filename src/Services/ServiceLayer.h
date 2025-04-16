@@ -6,6 +6,7 @@
 #include "../Models/StatusEvent.h"
 #include "../Models/PrinterStateEvent.h"
 #include "../Models/ValueEvent.h"
+#include "../Models/EmptyEvent.h"
 
 class ServiceLayer {
  public:
@@ -16,6 +17,8 @@ class ServiceLayer {
   void sendPrinterState(PrinterState printerState);
 
   void sendTemperatureValue(float value);
+
+  void sendRequestRefresh();
 
  private:
   TransferService* transferService;

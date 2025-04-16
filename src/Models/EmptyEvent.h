@@ -2,11 +2,9 @@
 
 #include "../Codable/JsonSerializer.h"
 
-struct ValueEvent : public JsonSerializable {
-  float value;
-
-  ValueEvent(JsonObject& json);
-  ValueEvent(float value);
+struct EmptyEvent : public JsonSerializable {
+  EmptyEvent(JsonObject& json);
+  EmptyEvent();
 
  protected:
   void toJson(JsonObject& json) const override;
