@@ -23,6 +23,6 @@ class JSONObserverService final : public ObserverService, public TransferService
   StatusEventCallback lightStatusCallback_;
   PrinterStateEventCallback printerStatusCallback_;
   ValueEventCallback temperatureCallback_;
-  EmptyEventCallback emptyCallback_;
+  EmptyEventCallback refreshCallback_;
   void didReceive(const String data) override;
 };  // class JSONObserverService

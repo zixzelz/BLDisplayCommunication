@@ -22,7 +22,7 @@ void JSONObserverService::subscribeToTemperatureEvent(ValueEventCallback callbac
 }
 
 void JSONObserverService::subscribeToRefreshEvent(EmptyEventCallback callback) {
-  emptyCallback_ = callback;
+  refreshCallback_ = callback;
 }
 
 void JSONObserverService::didReceive(const String data) {
@@ -59,9 +59,9 @@ void JSONObserverService::didReceive(const String data) {
     }
   } else if (event.id == CommandEventID::refresh) {
     printf("JSONObserverService::didReceive: refresh \n");
-    if (temperatureCallback_ != nullptr) {
+    if (refreshCallback_ != nullptr) {
       EmptyEvent event;
-      emptyCallback_(event);
+      refreshCallback_(event);
     }
   } else {
     printf("JSONObserverService::didReceive: Invalid CommandEventID: %i \n", static_cast<int>(event.id));
