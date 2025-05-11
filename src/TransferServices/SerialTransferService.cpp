@@ -26,15 +26,15 @@ void SerialTransferService::setup(HardwareSerial& serial) {
 
 void SerialTransferService::loop() {
   if (hwSerial->available() > 0) {
-    printf("[SerialTransferService] receive string \n");
-    String incomingByte = hwSerial->readStringUntil('\n');
+    String incomingString = hwSerial->readStringUntil('\n');
+    printf("[SerialTransferService]: %s \n", incomingString);
 
     // Check if the message starts with ">>"
-    if (incomingByte.startsWith(">>")) {
+    if (incomingString.startsWith(">>")) {
       printf("[SerialTransferService] process string \n");
       // Remove the ">>" prefix
-      incomingByte = incomingByte.substring(2);
-      delegate->didReceive(incomingByte);
+      incomingString = incomingString.substring(2);
+      delegate->didReceive(incomingString);
     }
   }
 }
